@@ -27,7 +27,7 @@ module Ransack
           return nil unless attr && attr.valid?
           name         = attr.arel_attribute.name.to_s
           table        = attr.arel_attribute.relation.table_name
-          schema_cache = ::ActiveRecord::Base.connection.schema_cache
+          schema_cache = @engine.connection.schema_cache
           unless schema_cache.send(database_table_exists?, table)
             raise "No table named #{table} exists."
           end
